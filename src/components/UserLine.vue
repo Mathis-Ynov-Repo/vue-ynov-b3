@@ -1,0 +1,56 @@
+<template>
+  <tr>
+    <td>
+      <img :src="user.avatar">
+    </td>
+    <td>
+      <span v-html="highlight" />
+    </td>
+
+    <td>{{ user.email }}</td>
+    <td>{{ user.phone }}</td>
+    <td>{{ user.gender }}</td>
+    <td>{{ user.age }}</td>
+  </tr>
+</template>
+
+<script>
+export default {
+  props: {
+    user: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+    search: {
+      type: String,
+      default() {
+        return '';
+      },
+    },
+  },
+  computed: {
+    searchWords() {
+      if (!this.search.length) { return []; }
+
+      return this.search.toLowerCase().split(' ');
+    },
+    highlight() {
+      const nameFormated = this.searchWords.length
+        ? this.user.name.replace(
+          new RegExp(this.searchWords.join('|'), 'gi'),
+          '<span class="highlight">$&</span>',
+        )
+        : this.user.name;
+
+      return nameFormated;
+    },
+  },
+
+};
+</script>
+
+<style>
+
+</style>
