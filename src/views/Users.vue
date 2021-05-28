@@ -1,5 +1,11 @@
 <template>
   <div class="container-fluid">
+    <h2
+      v-if="$route.query.edited"
+      style="background: green; color: white"
+    >
+      Successful edit
+    </h2>
     <div id="app">
       <div>
         <h1>Vue</h1>
@@ -52,7 +58,10 @@ export default {
         this.nonFilteredUsers = data.data.map((user) => ({
           id: user._id,
           age: this.getAge(user.birthDate),
+          birthDate: user.birthDate,
           name: `${user.firstName} ${user.lastName.toUpperCase()}`,
+          firstName: user.firstName,
+          lastName: user.lastName,
           email: user.email,
           phone: user.phone,
           gender: user.gender,

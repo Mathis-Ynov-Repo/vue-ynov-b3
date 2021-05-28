@@ -1,5 +1,6 @@
 <template>
-  <form
+  <user-form />
+  <!-- <form
     style="display: flex; flex-direction: column;
   align-items: center; height : 600px; justify-content : space-between"
     method="POST"
@@ -61,51 +62,54 @@
     >
       Submit
     </button>
-  </form>
+  </form> -->
 </template>
 
 <script>
+import UserForm from '../components/UserForm.vue';
 // import axios from 'axios';
 
 export default {
-  data() {
-    return {
-      firstName: '',
-      lastName: '',
-      birthDate: new Date(),
-      email: '',
-      phone: '',
-      gender: 'male',
-      avatar: '',
-      details: '',
-    };
-  },
-  methods: {
-    postUser() {
-      // axios.post('https://ynov-front.herokuapp.com/api/users/', {
-      //   birthDate: this.birthDate,
-      //   firstName: this.firstName,
-      //   lastName: this.lastName,
-      //   email: this.email,
-      //   phone: this.phone,
-      //   gender: this.gender,
-      //   avatarUrl: this.avatar,
-      //   details: this.details,
-      // });
-      if (this.email && this.firstName && this.lastName && this.birthDate && this.avatar) {
-        console.log({
-          birthDate: this.birthDate,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          phone: this.phone,
-          gender: this.gender,
-          avatarUrl: this.avatar,
-          details: this.details,
-        });
-      }
-    },
-  },
+  components: { UserForm },
+  //   data() {
+  //     return {
+  //       firstName: '',
+  //       lastName: '',
+  //       birthDate: new Date(),
+  //       email: '',
+  //       phone: '',
+  //       gender: 'male',
+  //       avatar: '',
+  //       details: '',
+  //     };
+  //   },
+  //   methods: {
+  //     postUser() {
+  //       // axios.post('https://ynov-front.herokuapp.com/api/users/', {
+  //       //   birthDate: this.birthDate,
+  //       //   firstName: this.firstName,
+  //       //   lastName: this.lastName,
+  //       //   email: this.email,
+  //       //   phone: this.phone,
+  //       //   gender: this.gender,
+  //       //   avatarUrl: this.avatar,
+  //       //   details: this.details,
+  //       // });
+
+//       if (this.email && this.firstName && this.lastName && this.birthDate && this.avatar) {
+//         console.log({
+//           birthDate: this.birthDate,
+//           firstName: this.firstName,
+//           lastName: this.lastName,
+//           email: this.email,
+//           phone: this.phone,
+//           gender: this.gender,
+//           avatarUrl: this.avatar,
+//           details: this.details,
+//         });
+//       }
+//     },
+//   },
 };
 </script>
 
