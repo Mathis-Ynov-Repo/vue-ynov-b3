@@ -1,7 +1,10 @@
 <template>
   <tr>
     <td>
-      <img :src="user.avatar">
+      <img
+        :src="user.avatar"
+        style="max-height: 50px"
+      >
     </td>
     <td>
       <span v-html="highlight" />
@@ -11,6 +14,11 @@
     <td>{{ user.phone }}</td>
     <td>{{ user.gender }}</td>
     <td>{{ user.age }}</td>
+    <td>
+      <router-link :to="{path:'/users/'+user.id, params: {user: user}}">
+        <a>Voir les détails</a>
+      </router-link>
+    </td>
   </tr>
 </template>
 

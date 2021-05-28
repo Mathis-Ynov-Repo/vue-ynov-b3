@@ -39,29 +39,38 @@ export default {
       nonFilteredUsers: [],
       searchString: '',
       filteredLength: 0,
-      loading: false,
+      loading: true,
     };
   },
   created() {
-    this.loading = true;
-    setTimeout(() => this.fetchUsers(), 1000);
+    this.fetchUsers();
   },
   methods: {
     fetchUsers() {
       this.loading = true;
-      axios('https://randomuser.me/api/?results=20').then(({ data: { results } }) => {
-        this.nonFilteredUsers = results.map((user) => ({
-          age: user.dob.age,
-          name: `${user.name.first} ${user.name.last.toUpperCase()}`,
+      axios('https://ynov-front.herokuapp.com/api/users').then(({ data }) => {
+        this.nonFilteredUsers = data.data.map((user) => ({
+          id: user._id,
+          age: this.getAge(user.birthDate),
+          name: `${user.firstName} ${user.lastName.toUpperCase()}`,
           email: user.email,
           phone: user.phone,
           gender: user.gender,
-          avatar: user.picture.thumbnail,
+          avatar: user.avatarUrl,
         }));
         this.loading = false;
       });
     },
-
+    getAge(dateString) {
+      const today = new Date();
+      const birthDate = new Date(dateString);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age -= 1;
+      }
+      return age;
+    },
   },
 };
 </script>

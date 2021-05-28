@@ -1,5 +1,9 @@
 <template>
   <div style="display: flex; flex-direction: row;">
+    <router-link :to="{name:'CreateUser'}">
+      Create user
+    </router-link>
+
     <button
       id="fetch-users"
       class="btn btn-primary"
