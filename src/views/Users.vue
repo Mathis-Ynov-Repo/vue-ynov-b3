@@ -42,6 +42,10 @@ export default {
       loading: false,
     };
   },
+  created() {
+    this.loading = true;
+    setTimeout(() => this.fetchUsers(), 1000);
+  },
   methods: {
     fetchUsers() {
       this.loading = true;
