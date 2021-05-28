@@ -3,6 +3,9 @@
     id="tbl-users"
     class="table table-hover"
   >
+    <div v-if="loading">
+      LOADING...
+    </div>
     <thead>
       <tr>
         <th />
@@ -63,6 +66,7 @@ export default {
     gender: { type: String, default: '' },
     nonFilteredUsers: { type: Array, default() { return []; } },
     searchString: { type: String, default: '' },
+    loading: { type: Boolean, default: false },
   },
   data() {
     return {

@@ -16,6 +16,7 @@
         :gender="gender"
         :non-filtered-users="nonFilteredUsers"
         :search-string="searchString"
+        :loading="loading"
         @update-count="filteredLength = $event"
       />
     </div>
@@ -38,10 +39,12 @@ export default {
       nonFilteredUsers: [],
       searchString: '',
       filteredLength: 0,
+      loading: false,
     };
   },
   methods: {
     fetchUsers() {
+      this.loading = true;
       axios('https://randomuser.me/api/?results=20').then(({ data: { results } }) => {
         this.nonFilteredUsers = results.map((user) => ({
           age: user.dob.age,
@@ -51,6 +54,7 @@ export default {
           gender: user.gender,
           avatar: user.picture.thumbnail,
         }));
+        this.loading = false;
       });
     },
 
