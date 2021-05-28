@@ -8,9 +8,29 @@
         Users
       </router-link>
     </div>
-    <router-view />
+    <div
+      v-if="notification"
+      style="padding : 10px; color: white"
+      :style="notification.type === 'success' ?
+        'background: green' : 'background:red'"
+    >
+      {{ notification.message }} <button @click="notification = null">
+        x
+      </button>
+    </div>
+    <router-view @notification="notification = $event" />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      notification: null,
+    };
+  },
+};
+</script>
 
 <style>
 #app {

@@ -15,7 +15,7 @@
     >
     <div
       v-if="!editing"
-      style="display: flex; align-items: center;height: 200px;
+      style="display: flex; align-items: center;height: 400px;
    flex-direction: column; justify-content: space-around"
     >
       <div><strong>Nom :</strong> {{ user.name }}</div>
@@ -23,7 +23,9 @@
       <div><strong>Phone :</strong> {{ user.phone }}</div>
       <div><strong>Gender :</strong> {{ user.gender }}</div>
       <div><strong>Age :</strong> {{ user.age }}</div>
-      <div><strong>Info :</strong> {{ user.details }}</div>
+      <div>
+        <strong>Info :</strong><span v-html="parsedDetails" />
+      </div>
       <button @click="editing = true">
         Edit User
       </button>
@@ -33,6 +35,7 @@
       :user="user"
       :edit="true"
       @un-edit="editing = false"
+      @submitUser="putUser($event)"
     />
   </div>
 </template>
@@ -53,6 +56,13 @@ export default {
       phone: '',
       info: '',
     };
+  },
+  computed: {
+    parsedDetails() {
+      return this.user.details?.replace(
+        new RegExp('\\n', 'gi'), '<br>',
+      );
+    },
   },
   created() {
     this.fetchUser();
@@ -86,6 +96,15 @@ export default {
         age -= 1;
       }
       return age;
+    },
+    async putUser(user) {
+      try {
+        await axios.put(`https://ynov-front.herokuapp.com/api/users/${user.id}`, user);
+        this.$router.push({ name: 'Users' });
+        this.$emit('notification', { type: 'success', message: 'Omedeto' });
+      } catch {
+        this.$emit('notification', { type: 'fail', message: 'Awa' });
+      }
     },
   },
 };

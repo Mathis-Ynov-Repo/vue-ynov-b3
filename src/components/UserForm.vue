@@ -140,8 +140,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   props: ['user', 'edit'],
   data() {
@@ -171,11 +169,10 @@ export default {
       //   details: this.details,
       // });
       console.log('post');
-
       if (this.email && this.firstName && this.lastName
       && this.birthDate && this.avatar && this.phone) {
         this.error = '';
-        console.log({
+        const user = {
           birthDate: this.birthDate,
           firstName: this.firstName,
           lastName: this.lastName,
@@ -184,13 +181,15 @@ export default {
           gender: this.gender,
           avatarUrl: this.avatar,
           details: this.details,
-        });
+        };
+        console.log(user);
+        // this.$emit('submitUser', user);
       } else {
         this.error = 'il manque des champs';
       }
     },
     putUser() {
-      axios.put(`https://ynov-front.herokuapp.com/api/users/${this.user.id}`, this.editUser).then(() => this.$router.push({ name: 'Users', query: { edited: true } }));
+      this.$emit('submitUser', this.editUser);
     },
   },
 };
