@@ -50,10 +50,10 @@
         Female
       </option>
     </select>
-    <label for="avatar">AvatarUrl
+    <label for="avatarUrl">AvatarUrl
       <input
-        v-model="avatar"
-        name="avatar"
+        v-model="avatarUrl"
+        name="avatarUrl"
         required
       ></label>
     <label for="details">details
