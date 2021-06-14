@@ -1,19 +1,21 @@
 <template>
   <div style="display: flex; flex-direction: row;">
-    <!-- <router-link :to="{name:'CreateUser'}">
-      Create user
-    </router-link> -->
     <button
       v-if="!modalVisible"
       @click="modalVisible = true"
     >
       +
     </button>
-    <user-modal
-      v-else
-      @close="modalVisible = false"
-      @rfrsh-users="$emit('get-users')"
-    />
+    <transition
+      name="fade"
+    >
+      <user-modal
+        v-if="modalVisible"
+        @close="modalVisible = false"
+        @rfrsh-users="$emit('get-users')"
+        @notify="$emit('notification', $event)"
+      />
+    </transition>
 
     <button
       id="fetch-users"
@@ -87,5 +89,16 @@ export default {
 }
 .highlight {
   font-weight: bold;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.fade-enter {
+  opacity:0;
+
 }
 </style>

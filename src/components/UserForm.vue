@@ -118,10 +118,10 @@
         Female
       </option>
     </select>
-    <label for="avatar">AvatarUrl
+    <label for="avatarUrl">AvatarUrl
       <input
-        v-model="editUser.avatar"
-        name="avatar"
+        v-model="editUser.avatarUrl"
+        name="avatarUrl"
         required
       ></label>
     <label for="details">details
@@ -152,16 +152,15 @@ export default {
       email: '',
       phone: '',
       gender: 'male',
-      avatar: '',
+      avatarUrl: '',
       details: '',
       error: '',
     };
   },
   methods: {
     postUser() {
-      console.log('post');
       if (this.email && this.firstName && this.lastName
-      && this.birthDate && this.avatar && this.phone) {
+      && this.birthDate && this.avatarUrl && this.phone) {
         this.error = '';
         const user = {
           birthDate: this.birthDate,
@@ -170,10 +169,9 @@ export default {
           email: this.email,
           phone: this.phone,
           gender: this.gender,
-          avatarUrl: this.avatar,
+          avatarUrl: this.avatarUrl,
           details: this.details,
         };
-        // console.log(user);
         this.$emit('submitUser', user);
       } else {
         this.error = 'il manque des champs';

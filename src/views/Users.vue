@@ -16,6 +16,7 @@
           :non-filtered-users="nonFilteredUsers.length"
           @get-users="fetchUsers"
           @filter-search="searchString = $event"
+          @notification="$emit('notification', $event)"
         />
       </div>
       <user-list

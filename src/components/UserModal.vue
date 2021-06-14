@@ -1,9 +1,11 @@
 <template>
   <div
     class="modal-backdrop"
+    @click="close"
   >
     <div
       class="modal"
+      @click.stop=""
     >
       <button
         class="modal-header"
@@ -32,13 +34,16 @@ export default {
     refreshUsers() {
       this.$emit('rfrsh-users');
     },
+    notify() {
+      this.$emit('notify', { type: 'success', message: 'OmedetoWO' });
+    },
     postUser(user) {
       console.log(user);
       axios.post('https://ynov-front.herokuapp.com/api/users', user)
         .then(() => {
           this.close();
           this.refreshUsers();
-          this.$emit('notification', { type: 'success', message: 'OmedetoWO' });
+          this.notify();
         });
     },
   },
