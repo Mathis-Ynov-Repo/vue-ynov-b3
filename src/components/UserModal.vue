@@ -27,6 +27,13 @@ import UserForm from './UserForm.vue';
 
 export default {
   components: { UserForm },
+  mounted() {
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === 27) {
+        this.close();
+      }
+    });
+  },
   methods: {
     close() {
       this.$emit('close');
