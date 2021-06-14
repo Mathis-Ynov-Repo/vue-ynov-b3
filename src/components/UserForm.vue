@@ -88,6 +88,7 @@
       >
     </label>
     <label for="birthDate">Date de Naissance
+      ( {{ new Date(editUser.birthDate).toLocaleDateString('fr-FR') }} )
       <input
         v-model="editUser.birthDate"
         type="date"

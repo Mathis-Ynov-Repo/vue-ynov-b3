@@ -10,7 +10,7 @@
       Go back
     </router-link>
     <img
-      :src="user.avatar"
+      :src="user.avatarUrl"
       style="max-height : 400px"
     >
     <div
@@ -82,7 +82,7 @@ export default {
           email: data.data.email,
           phone: data.data.phone,
           gender: data.data.gender,
-          avatar: data.data.avatarUrl,
+          avatarUrl: data.data.avatarUrl,
           details: data.data.details,
         };
       });
