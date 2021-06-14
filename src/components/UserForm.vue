@@ -1,6 +1,7 @@
 <template>
   <form
     v-if="!edit"
+    class="user-form"
     style="display: flex; flex-direction: column;
   align-items: center; height : 600px; justify-content : space-between"
     method="POST"
@@ -158,16 +159,6 @@ export default {
   },
   methods: {
     postUser() {
-      // axios.post('https://ynov-front.herokuapp.com/api/users/', {
-      //   birthDate: this.birthDate,
-      //   firstName: this.firstName,
-      //   lastName: this.lastName,
-      //   email: this.email,
-      //   phone: this.phone,
-      //   gender: this.gender,
-      //   avatarUrl: this.avatar,
-      //   details: this.details,
-      // });
       console.log('post');
       if (this.email && this.firstName && this.lastName
       && this.birthDate && this.avatar && this.phone) {
@@ -182,8 +173,8 @@ export default {
           avatarUrl: this.avatar,
           details: this.details,
         };
-        console.log(user);
-        // this.$emit('submitUser', user);
+        // console.log(user);
+        this.$emit('submitUser', user);
       } else {
         this.error = 'il manque des champs';
       }

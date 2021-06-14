@@ -1,8 +1,19 @@
 <template>
   <div style="display: flex; flex-direction: row;">
-    <router-link :to="{name:'CreateUser'}">
+    <!-- <router-link :to="{name:'CreateUser'}">
       Create user
-    </router-link>
+    </router-link> -->
+    <button
+      v-if="!modalVisible"
+      @click="modalVisible = true"
+    >
+      +
+    </button>
+    <user-modal
+      v-else
+      @close="modalVisible = false"
+      @rfrsh-users="$emit('get-users')"
+    />
 
     <button
       id="fetch-users"
@@ -46,7 +57,10 @@
 </template>
 
 <script>
+import UserModal from './UserModal.vue';
+
 export default {
+  components: { UserModal },
   model: {
     prop: 'gender',
     event: 'filter-genre',
@@ -55,6 +69,11 @@ export default {
     filteredListCount: { type: Number, default: 0 },
     nonFilteredUsers: { type: Number, default: 0 },
     gender: { type: String, default: '' },
+  },
+  data() {
+    return {
+      modalVisible: false,
+    };
   },
 };
 </script>
