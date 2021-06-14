@@ -8,26 +8,30 @@
         Users
       </router-link>
     </div>
-    <div
+    <Notification
       v-if="notification"
-      style="padding : 10px; color: white"
-      :style="notification.type === 'success' ?
-        'background: green' : 'background:red'"
-    >
-      {{ notification.message }} <button @click="notification = null">
-        x
-      </button>
-    </div>
-    <router-view @notification="notification = $event" />
+      :notification="notification"
+      @close-notification="notification = null"
+    />
+    <router-view @notification="assignAndWait($event)" />
   </div>
 </template>
 
 <script>
+import Notification from './components/Notification.vue';
+
 export default {
+  components: { Notification },
   data() {
     return {
       notification: null,
     };
+  },
+  methods: {
+    assignAndWait(notif) {
+      this.notification = notif;
+      setTimeout(() => { this.notification = null; }, 3000);
+    },
   },
 };
 </script>

@@ -52,6 +52,7 @@
         :key="user.email"
         :user="user"
         :search="searchString"
+        @delete="$emit('delete-user', $event)"
       />
     </tbody>
   </table>

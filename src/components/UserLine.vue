@@ -19,6 +19,14 @@
         <a>Voir les détails</a>
       </router-link>
     </td>
+    <td>
+      <button
+        style="cursor:pointer"
+        @click="$emit('delete', user.id)"
+      >
+        X
+      </button>
+    </td>
   </tr>
 </template>
 

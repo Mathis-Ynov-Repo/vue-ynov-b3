@@ -75,8 +75,10 @@ export default {
 
   .modal-header {
     padding: 15px;
+    margin: 15px;
     display: flex;
     justify-content: right;
+    align-self: flex-end;
   }
 
   .user-form {

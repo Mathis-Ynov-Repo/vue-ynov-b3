@@ -25,6 +25,7 @@
         :search-string="searchString"
         :loading="loading"
         @update-count="filteredLength = $event"
+        @delete-user="deleteUser($event)"
       />
     </div>
   </div>
@@ -80,6 +81,16 @@ export default {
         age -= 1;
       }
       return age;
+    },
+    deleteUser(id) {
+      console.log(id);
+      this.$emit('notification', { type: 'error', message: `Deleted user ${id}` });
+      this.fetchUsers();
+      // axios.delete('https://ynov-front.herokuapp.com/api/users', id)
+      //   .then(() => {
+      //     this.$emit('notification', { type: 'error', message: 'del' });
+      //     this.fetchUsers();
+      //   });
     },
   },
 };
