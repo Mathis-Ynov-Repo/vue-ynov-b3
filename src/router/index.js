@@ -28,6 +28,11 @@ const routes = [
     name: 'CreateUser',
     component: () => import(/* webpackChunkName: "about" */ '../views/CreateUser.vue'),
   },
+  {
+    path: '/valorant',
+    name: 'Val',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Valorant.vue'),
+  },
 ];
 
 const router = new VueRouter({

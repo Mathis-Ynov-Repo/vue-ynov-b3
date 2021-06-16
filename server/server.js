@@ -13,6 +13,15 @@ app.get('/', (req, res) => {
   res.sendFile(`${path}/index.html`);
 });
 
+app.get('/api/valorant', async (req, res) => {
+  try {
+    const val = { missile: 54, name: 'Viber' };
+    res.send(val);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
