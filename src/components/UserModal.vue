@@ -42,7 +42,7 @@ export default {
       this.$emit('rfrsh-users');
     },
     notify() {
-      this.$emit('notify', { type: 'success', message: 'OmedetoWO' });
+      this.$emit('notify', { type: 'success', message: 'Utilisateur créé avec succès boss' });
     },
     postUser(user) {
       console.log(user);

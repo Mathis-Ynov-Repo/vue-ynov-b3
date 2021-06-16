@@ -101,7 +101,7 @@ export default {
       try {
         await axios.put(`https://ynov-front.herokuapp.com/api/users/${user.id}`, user);
         this.$router.push({ name: 'Users' });
-        this.$emit('notification', { type: 'success', message: 'Omedeto' });
+        this.$emit('notification', { type: 'success', message: 'Bien Modifié chef' });
       } catch {
         this.$emit('notification', { type: 'fail', message: 'Awa' });
       }
