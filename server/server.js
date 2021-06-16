@@ -3,7 +3,10 @@ require('dotenv').config();
 
 const path = `${__dirname}/build`;
 const app = express();
+const history = require('connect-history-api-fallback');
 
+app.use(express.static(path));
+app.use(history());
 app.use(express.static(path));
 
 app.get('/', (req, res) => {
