@@ -7,39 +7,42 @@
     method="POST"
     @submit.prevent="postUser"
   >
-    <label for="firstName">Prénom
-      <input
-        v-model="firstName"
-        required
-      >
-    </label>
-    <label for="lastName">Nom de famille
-      <input
-        v-model="lastName"
-        required
-      >
-    </label>
-    <label for="birthDate">Date de Naissance
-      <input
-        v-model="birthDate"
-        type="date"
-      >
-    </label>
-    <label for="email">Email
-      <input
-        v-model="email"
-        type="email"
-        required
-      >
-    </label>
-    <label for="phone">Phone
-      <input
-        v-model="phone"
-        name="phone"
-        type="phone"
-        required
-      >
-    </label>
+    <form-input
+      :value="firstName"
+      :data="'firstName'"
+      :type="'text'"
+      :req="true"
+      @input="firstName = $event"
+    />
+    <form-input
+      :value="lastName"
+      :data="'lastName'"
+      :type="'text'"
+      :req="true"
+      @input="lastName = $event"
+    />
+    <form-input
+      :value="birthDate"
+      :data="'birthDate'"
+      :type="'date'"
+      :req="true"
+      @input="birthDate = $event"
+    />
+    <form-input
+      :value="email"
+      :data="'email'"
+      :type="'email'"
+      :req="true"
+      @input="email = $event"
+    />
+    <form-input
+      :value="phone"
+      :data="'phone'"
+      :type="'phone'"
+      :req="true"
+      @input="phone = $event"
+    />
+
     <select
       v-model="gender"
     >
@@ -50,13 +53,15 @@
         Female
       </option>
     </select>
-    <label for="avatarUrl">AvatarUrl
-      <input
-        v-model="avatarUrl"
-        name="avatarUrl"
-        required
-      ></label>
-    <label for="details">details
+    <form-input
+      :value="avatarUrl"
+      :data="'avatarUrl'"
+      :type="'text'"
+      :req="true"
+      @input="avatarUrl = $event"
+    />
+
+    <label for="details">Details
       <textarea v-model="details" />
     </label>
     <h2 v-if="error">
@@ -75,18 +80,21 @@
     method="POST"
     @submit.prevent="putUser"
   >
-    <label for="firstName">Prénom
-      <input
-        v-model="editUser.firstName"
-        required
-      >
-    </label>
-    <label for="lastName">Nom de famille
-      <input
-        v-model="editUser.lastName"
-        required
-      >
-    </label>
+    <form-input
+      :value="editUser.firstName"
+      :data="'firstName'"
+      :type="'text'"
+      :req="true"
+      @input="editUser.firstName = $event"
+    />
+    <form-input
+      :value="editUser.lastName"
+      :data="'lastName'"
+      :type="'text'"
+      :req="true"
+      @input="editUser.lastName = $event"
+    />
+
     <label for="birthDate">Date de Naissance
       ( {{ new Date(editUser.birthDate).toLocaleDateString('fr-FR') }} )
       <input
@@ -94,21 +102,21 @@
         type="date"
       >
     </label>
-    <label for="email">Email
-      <input
-        v-model="editUser.email"
-        type="email"
-        required
-      >
-    </label>
-    <label for="phone">Phone
-      <input
-        v-model="editUser.phone"
-        name="phone"
-        type="phone"
-        required
-      >
-    </label>
+    <form-input
+      :value="editUser.email"
+      :data="'email'"
+      :type="'email'"
+      :req="true"
+      @input="editUser.email = $event"
+    />
+
+    <form-input
+      :value="editUser.phone"
+      :data="'phone'"
+      :type="'phone'"
+      :req="true"
+      @input="editUser.phone = $event"
+    />
     <select
       v-model="editUser.gender"
     >
@@ -119,12 +127,14 @@
         Female
       </option>
     </select>
-    <label for="avatarUrl">AvatarUrl
-      <input
-        v-model="editUser.avatarUrl"
-        name="avatarUrl"
-        required
-      ></label>
+    <form-input
+      :value="editUser.avatarUrl"
+      :data="'avatarUrl'"
+      :type="'text'"
+      :req="true"
+      @input="editUser.avatarUrl = $event"
+    />
+
     <label for="details">details
       <textarea v-model="editUser.details" />
     </label>
@@ -142,7 +152,10 @@
 </template>
 
 <script>
+import FormInput from './FormInput.vue';
+
 export default {
+  components: { FormInput },
   props: ['user', 'edit'],
   data() {
     return {
