@@ -6,7 +6,10 @@
     <div v-if="loading">
       LOADING...
     </div>
-    <thead>
+    <h3 v-if="filteredList.length == 0">
+      Pas d'utilisateurs correspondants à la recherche
+    </h3>
+    <thead v-else>
       <tr>
         <th />
         <th @click="sort('name')">

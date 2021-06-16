@@ -1,7 +1,11 @@
 <template>
-  <div style="display: flex; flex-direction: row;">
+  <div
+    style="display: flex; flex-direction: row; justify-content: space-evenly;
+   align-items: center"
+  >
     <button
       v-if="!modalVisible"
+      class="mg"
       @click="modalVisible = true"
     >
       +
@@ -19,7 +23,7 @@
 
     <button
       id="fetch-users"
-      class="btn btn-primary"
+      class="btn btn-primary mg"
       @click="$emit('get-users')"
     >
       Fetch users
@@ -27,6 +31,7 @@
     <select
       id="genders"
       name="genders"
+      class="mg"
       @change="$emit('filter-genre', $event.target.value)"
     >
       <option value="">
@@ -44,12 +49,12 @@
     <span
       v-if="gender != ''"
       class="counter"
-    >{{ filteredListCount }} {{ gender }} /
+    > {{ filteredListCount }} {{ gender }}{{ filteredListCount > 1 ? 's' : null }} /
       {{ nonFilteredUsers }} users</span>
     <span
       v-else
       class="counter"
-    >{{ filteredListCount }} / {{ nonFilteredUsers }} users</span>
+    > {{ filteredListCount }} / {{ nonFilteredUsers }} users</span>
     <input
       placeholder="search"
       style="margin-left: auto;"
@@ -81,6 +86,9 @@ export default {
 </script>
 
 <style>
+.mg {
+  margin: 10px;
+}
 .asc:after {
   content: "\25B2"
 }

@@ -70,7 +70,7 @@
   </form>
   <form
     v-else
-    style="display: flex; flex-direction: column;
+    style="display: flex; flex-direction: column; padding: 10px;
   align-items: center; height : 600px; justify-content : space-between"
     method="POST"
     @submit.prevent="putUser"
